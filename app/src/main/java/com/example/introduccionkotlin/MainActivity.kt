@@ -29,16 +29,32 @@ class MainActivity : AppCompatActivity() {
         } else {
             saludo += ", quieres ser vip? paga la cuota."
         }
-        var mes = fecha.subSequence(3,5).toString().toInt()
+        var mes = fecha.subSequence(3, 5).toString().toInt()
         when (mes) {
-                1,2,3-> println("En invierno no hay ofertas de inversiones")
-                4,5,6 -> println("En primavera hay ofertas de inversiones con el 1.5% de interés")
-                7,8,9 -> println("En verano hay ofertas de inversioens con el 2.5% de interés")
-                10,11,12 -> print("En otoño hay ofertas de inversiones con el 3.5% de interés")
+            1, 2, 3 -> println("En invierno no hay ofertas de inversiones")
+            4, 5, 6 -> println("En primavera hay ofertas de inversiones con el 1.5% de interés")
+            7, 8, 9 -> println("En verano hay ofertas de inversioens con el 2.5% de interés")
+            10, 11, 12 -> print("En otoño hay ofertas de inversiones con el 3.5% de interés")
             else -> println("La fecha es errónea")
 
         }
         println(saludo)
+
+        var a: Boolean = true
+        var b: Boolean = true
+        var c: Boolean = false
+        var d: Boolean = false
+
+        //Operadores lógicos
+
+        a && b //&& = AND
+        a || b //|| = OR
+
+        a && c
+        a || c
+
+        !d // != NOT (NEGACION)
+
 
         //Operadores aritméticos
         /*
