@@ -40,21 +40,42 @@ class MainActivity : AppCompatActivity() {
         }
         println(saludo)
 
-        var a: Boolean = true
-        var b: Boolean = true
-        var c: Boolean = false
-        var d: Boolean = false
+        var pin: Int = 1234
+        var intentos: Int = 0
+        var clave_ingresada: Int = 1232
+
+        do {
+            println("Ingrese el pin")
+            println("Clave ingresada: $clave_ingresada")
+            intentos++
+            clave_ingresada++
+            println("El pin introducido es erróneo, tienes " + intentos + "/3 restantes")
+
+
+        } while (intentos < 3 || clave_ingresada != pin)
+
+        if (intentos == 3) {
+            println("Lo siento has superado el numero de intentos")
+        } else if (clave_ingresada == pin) {
+            println("Pin correcto, acceso garantizado")
+            println("Bienvenid@ " + nombre)
+        }
 
         //Operadores lógicos
 
-        a && b //&& = AND
-        a || b //|| = OR
+        /* var a: Boolean = true
+         var b: Boolean = true
+         var c: Boolean = false
+         var d: Boolean = false
 
-        a && c
-        a || c
+         a && b //&& = AND
+         a || b //|| = OR
 
-        !d // != NOT (NEGACION)
+         a && c
+         a || c
 
+         !d // != NOT (NEGACION)
+ */
 
         //Operadores aritméticos
         /*
