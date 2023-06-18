@@ -17,12 +17,28 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val fecha = "16/06/2023"
+
+
         var nombre = "Alexis"
-        var vip: Boolean = false
+        var vip: Boolean = true
         var inicial: Char = 'A'
         var saludo = "Hola " + nombre
 
+        if (vip == true) {
+            saludo += ", te queremos mucho."
+        } else {
+            saludo += ", quieres ser vip? paga la cuota."
+        }
+        var mes = fecha.subSequence(3,5).toString().toInt()
+        when (mes) {
+                1,2,3-> println("En invierno no hay ofertas de inversiones")
+                4,5,6 -> println("En primavera hay ofertas de inversiones con el 1.5% de interés")
+                7,8,9 -> println("En verano hay ofertas de inversioens con el 2.5% de interés")
+                10,11,12 -> print("En otoño hay ofertas de inversiones con el 3.5% de interés")
+            else -> println("La fecha es errónea")
 
+        }
+        println(saludo)
 
         //Operadores aritméticos
         /*
