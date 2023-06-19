@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val fecha = "16/06/2023"
+        val fecha = "01/06/2023"
 
 
         var nombre = "Alexis"
@@ -28,6 +28,10 @@ class MainActivity : AppCompatActivity() {
             saludo += ", te queremos mucho."
         } else {
             saludo += ", quieres ser vip? paga la cuota."
+        }
+        var dia = fecha.subSequence(0, 2).toString().toInt()
+        if (dia == 1) {
+            ingresar_sueldo()
         }
         var mes = fecha.subSequence(3, 5).toString().toInt()
         when (mes) {
@@ -61,24 +65,29 @@ class MainActivity : AppCompatActivity() {
             println("Bienvenid@ " + nombre)
         }
 
-        //Operadores lógicos
+        ingresar_dinero(50.5f)
+        retirar_dinero(40f)
+        retirar_dinero(50f)
+        retirar_dinero(2000f)
 
-        /* var a: Boolean = true
-         var b: Boolean = true
-         var c: Boolean = false
-         var d: Boolean = false
 
-         a && b //&& = AND
-         a || b //|| = OR
+        /*Operadores lógicos
 
-         a && c
-         a || c
+          var a: Boolean = true
+          var b: Boolean = true
+          var c: Boolean = false
+          var d: Boolean = false
 
-         !d // != NOT (NEGACION)
- */
+          a && b //&& = AND
+          a || b //|| = OR
 
-        //Operadores aritméticos
-        /*
+          a && c
+          a || c
+
+          !d // != NOT (NEGACION)
+  */
+        /*Operadores aritméticos
+
                 var a: Int = 5 + 5 //10
                 var b: Int = 10 - 2 //8
                 var c: Int = 3 * 4 //12
@@ -112,14 +121,47 @@ class MainActivity : AppCompatActivity() {
 
                 saldo++
         */
-        //Operadores de comparación
-        /*
-                a == b
-                a != b
-                a > b
-                a < b
-                a >= b
-                a <= b
-        */
+        /*Operadores de comparación
+
+               a == b
+               a != b
+               a > b
+               a < b
+               a >= b
+               a <= b
+       */
+    }
+
+    fun mostrar_saldo() {
+        println("Tienes $saldo$moneda")
+    }
+
+    fun ingresar_sueldo() {
+        saldo += sueldo
+        println("Se ha ingresado el sueldo: $sueldo$moneda satisfactoriamente.")
+        mostrar_saldo()
+    }
+
+    fun ingresar_dinero(cantidad: Float) {
+        saldo += cantidad
+        println("Se ha ingresado la cantidad: $cantidad$moneda satisfactoriamente")
+        mostrar_saldo()
+    }
+
+    fun retirar_dinero(cantidad: Float) {
+        if (verificarCantidad(cantidad)) {
+            saldo -= cantidad
+            println("Se ha retirado la cantidad: $cantidad$moneda satisfactoriamente")
+            mostrar_saldo()
+        } else
+            println("No se puede retirar más cantidad de saldo que posees")
+
+
+    }
+
+    fun verificarCantidad(cantidad: Float): Boolean {
+        if (cantidad > saldo) return false
+        else return true
+
     }
 }
