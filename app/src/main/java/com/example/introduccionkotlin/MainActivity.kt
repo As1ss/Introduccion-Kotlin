@@ -71,16 +71,25 @@ class MainActivity : AppCompatActivity() {
         retirar_dinero(50f)
         retirar_dinero(2000f)
 
+
         //Array simple
-        var recibos:Array<String> = arrayOf("luz","agua","gas")
+        var recibos: Array<String> = arrayOf("luz", "agua", "gas")
+        recibos.set(2, "internet")
+        recorrerArray(recibos)
 
         //Array bidimensional
         var matriz = arrayOf(
-            intArrayOf(1,2,3),
-            intArrayOf(4,5,6),
-            intArrayOf(7,8,9)
+            intArrayOf(1, 2, 3),
+            intArrayOf(4, 5, 6, 7, 8, 9, 10),
+            intArrayOf(11, 12, 13,14)
 
         )
+     for (i in (0 until matriz.size)){
+         println("Fila: ${i+1}")
+         for (j in (0 until matriz[i].size)){
+             println("Posicion[$i][$j] ==> ${matriz[i][j]}")
+         }
+     }
 
 
         /*Operadores lógicos
@@ -175,5 +184,20 @@ class MainActivity : AppCompatActivity() {
         if (cantidad > saldo) return false
         else return true
 
+    }
+
+    fun recorrerArray(array: Array<String>) {
+        for (i in array) {
+            println(i)
+        }
+        for (i in array.indices) {
+            println(array.get(i))
+        }
+        for (i in 0..array.size - 1) {
+            println("${i + 1}: ${array.get(i)}")
+        }
+        for (i in (0 until array.size)) {
+            println("${i + 1}==> ${array.get(i)}")
+        }
     }
 }
