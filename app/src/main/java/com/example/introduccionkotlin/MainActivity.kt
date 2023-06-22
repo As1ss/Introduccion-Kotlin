@@ -1,8 +1,10 @@
 package com.example.introduccionkotlin
 
 import android.R.array
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -13,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     var sueldo: Float = 764.82f
     var cantidad: Int = 5
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -81,15 +84,107 @@ class MainActivity : AppCompatActivity() {
         var matriz = arrayOf(
             intArrayOf(1, 2, 3),
             intArrayOf(4, 5, 6, 7, 8, 9, 10),
-            intArrayOf(11, 12, 13,14)
+            intArrayOf(11, 12, 13, 14)
 
         )
-     for (i in (0 until matriz.size)){
-         println("Fila: ${i+1}")
-         for (j in (0 until matriz[i].size)){
-             println("Posicion[$i][$j] ==> ${matriz[i][j]}")
-         }
-     }
+        //Recorrer el array bidimensional con un for
+        for (i in (0 until matriz.size)) {
+            println("Fila: ${i + 1}")
+            for (j in (0 until matriz[i].size)) {
+                println("Posicion[$i][$j] ==> ${matriz[i][j]}")
+            }
+        }
+
+        //COLECCIONES
+
+        //Colleción set ==> dimensión fija
+        var clientesVIP: Set<Int> = setOf(1234, 4567, 8901)
+        var setMezclado = setOf(4, 2.53, "casa", 'c')
+        println("Clientes VIP: $clientesVIP")
+        println("Numero de clientes VIP: ${clientesVIP.size}")
+
+        if (clientesVIP.contains(1234))
+            println("1234 es VIP")
+
+
+        //Colección MutableSet ==> permite redimensionar la colección
+        var clientes: MutableSet<Int> = mutableSetOf(1234, 4567, 8901, 4410)
+        println("Clientes: $clientes")
+        println("Número de clientes: ${clientes.size}")
+
+        //Añadir elemento
+        clientes.add(1912)
+        println("Clientes: $clientes")
+        println("Número de clientes: ${clientes.size}")
+
+        //Eliminar elemento
+        clientes.remove(4567)
+        println("Clientes: $clientes")
+        println("Número de clientes: ${clientes.size}")
+
+        //Eliminar todos los elementos
+        clientes.clear()
+        println("Clientes: $clientes")
+        println("Número de clientes: ${clientes.size}")
+
+        //Colección List ==> dimensión fija
+        var divisas: List<Char> = listOf('€', '$', '¥')
+        println("Divisas: $divisas")
+        println("Número de divisas: ${divisas.size}")
+
+        //Colección MutableList ==> permite redimensionar la colección
+        var bolsa: MutableList<String> = mutableListOf("Coca-cola", "Adidas", "Amazon", "Pfizer")
+        println(bolsa)
+        println("Número de empresas de bolsa: ${bolsa.size}")
+
+        //Añadir elemento
+        bolsa.add("Adobe")
+        println(bolsa)
+        println("Número de empresas de bolsa: ${bolsa.size}")
+
+        //Eliminar elemento
+        bolsa.remove("Pfizer") // Se puede eliminar indicando el elemento
+        //  bolsa.removeAt(4) Se puede eliminar indicando el índice
+        //  bolsa.removeLast() Se puede eliminar indicando la posición final de la colección
+        println(bolsa)
+        println("Número de empresas de bolsa: ${bolsa.size}")
+
+        //Funciones varias que se pueden realizar sobre listas
+        println("Primer elemento de bolsa: ${bolsa.first()}")
+        println(bolsa.firstOrNull())
+        println("Último elemento de bolsa: ${bolsa.last()}")
+        println("El segundo elemento de bolsa: ${bolsa.elementAt(2)}")
+        println("Muestra un booleano sobre la colección si está vacía: ${bolsa.none()}")
+
+        //Eliminar todos los elementos
+        bolsa.clear()
+        println(bolsa)
+        println("Número de empresas de bolsa: ${bolsa.size}")
+        println("Muestra un booleano sobre la colección si está vacía: ${bolsa.none()}")
+        //Esta función solo se puede realizar sobre las colecciones MutableList
+        println(bolsa.firstOrNull()) //Muestra el primer elemento, si no existe muestra un null
+
+
+        //Colección Map ==> dimensión fija
+        var mapas: Map<Int, String> = mapOf(
+            1 to "España",
+            2 to "Italia",
+            3 to "Alemania"
+        )
+        println(mapas)
+        //Colección MutableMap ==> permite redimensionar la colección
+        var inversiones: MutableMap<String, Float> = mutableMapOf()
+
+        //Añadir par de claves en la colección
+        inversiones.put("Coca-cola", 50f)
+        println(inversiones)
+        inversiones.put("Adobe", 50f)
+        println(inversiones)
+        //Eliminar par de claves de la colección
+        // inversiones.remove("Coca-cola") ==> Esta función eliminará el elemento que contenga la clave descrita
+        inversiones.remove("Coca-cola", 50f) // ==> Esta función eliminará el elemento si cumple con las dos condiciones,
+        // que sea la clave descrita y el valor descrito
+        println(inversiones)
 
 
         /*Operadores lógicos
@@ -199,5 +294,21 @@ class MainActivity : AppCompatActivity() {
         for (i in (0 until array.size)) {
             println("${i + 1}==> ${array.get(i)}")
         }
+    }
+
+    fun recorrerLista(lista: List<Char>) {
+        for (i in lista) {
+            println(i)
+        }
+        for (i in 0..lista.size - 1) {
+            println(lista.get(i))
+        }
+        for (i in (0 until lista.size)) {
+            print(lista[i])
+        }
+        for (i in lista.indices) {
+            println(lista.get(i))
+        }
+
     }
 }
