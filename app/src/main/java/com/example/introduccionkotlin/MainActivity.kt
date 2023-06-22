@@ -1,6 +1,5 @@
 package com.example.introduccionkotlin
 
-import android.R.array
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -157,12 +156,13 @@ class MainActivity : AppCompatActivity() {
         println("Muestra un booleano sobre la colección si está vacía: ${bolsa.none()}")
 
         //Eliminar todos los elementos
-        bolsa.clear()
+        /* bolsa.clear()
         println(bolsa)
         println("Número de empresas de bolsa: ${bolsa.size}")
         println("Muestra un booleano sobre la colección si está vacía: ${bolsa.none()}")
         //Esta función solo se puede realizar sobre las colecciones MutableList
         println(bolsa.firstOrNull()) //Muestra el primer elemento, si no existe muestra un null
+        */
 
 
         //Colección Map ==> dimensión fija
@@ -173,18 +173,44 @@ class MainActivity : AppCompatActivity() {
         )
         println(mapas)
         //Colección MutableMap ==> permite redimensionar la colección
-        var inversiones: MutableMap<String, Float> = mutableMapOf()
+        var inversionesTest: MutableMap<String, Float> = mutableMapOf()
 
         //Añadir par de claves en la colección
-        inversiones.put("Coca-cola", 50f)
-        println(inversiones)
-        inversiones.put("Adobe", 50f)
-        println(inversiones)
+        inversionesTest.put("Coca-cola", 50f)
+        println(inversionesTest)
+        inversionesTest.put("Adobe", 50f)
+        println(inversionesTest)
         //Eliminar par de claves de la colección
         // inversiones.remove("Coca-cola") ==> Esta función eliminará el elemento que contenga la clave descrita
-        inversiones.remove("Coca-cola", 50f) // ==> Esta función eliminará el elemento si cumple con las dos condiciones,
+        inversionesTest.remove(
+            "Coca-cola",
+            50f
+        ) // ==> Esta función eliminará el elemento si cumple con las dos condiciones,
         // que sea la clave descrita y el valor descrito
-        println(inversiones)
+        println(inversionesTest)
+
+        var inversiones: MutableMap<String, Float> = mutableMapOf()
+        var empresa: String? =
+            null // Con la ? controlamos que esta variable pueda contener un String o un null
+        var cantidad_inversion: Float = 90f
+        var index: Int = 0
+
+        mostrar_saldo()
+
+        while (saldo >= cantidad_inversion) {
+            empresa =
+                bolsa.elementAtOrNull(index) //==> aqui podríamos poner !! para indicar al compilador que este dato nunca va a ser null
+            if (empresa != null) {
+                saldo -= cantidad_inversion
+                println("Se ha realizado una inversion de $cantidad_inversion $moneda en $empresa")
+                inversiones.put(empresa, cantidad_inversion)
+            } else
+                break
+            index++
+        }
+
+        recorrerMap(inversiones)
+        mostrar_saldo()
 
 
         /*Operadores lógicos
@@ -310,5 +336,17 @@ class MainActivity : AppCompatActivity() {
             println(lista.get(i))
         }
 
+    }
+
+    fun recorrerMap(mapa: MutableMap<String, Float>) {
+       /*for (i in 0..mapa.size - 1) {
+            println(mapa)
+        }
+        for (i in (0 until mapa.size)){
+            println(mapa)
+        }*/
+        for(i in mapa){
+            println("${i.key}: inversión: ${i.value}")
+        }
     }
 }
